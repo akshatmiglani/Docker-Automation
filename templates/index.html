@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dockerfile Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Dockerfile Generator</h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="service_name">Service Name (e.g., ftp, web server, mail server):</label>
+                <input type="text" class="form-control" id="service_name" name="service_name" required>
+            </div>
+            <div class="form-group">
+                <label for="port">Port:</label>
+                <input type="text" class="form-control" id="port" name="port" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Generate Dockerfile and Run Container</button>
+        </form>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="alert alert-info mt-3">
+              {% for message in messages %}
+                <p>{{ message }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>
