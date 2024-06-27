@@ -6,11 +6,9 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
-# Get the API key from environment variables
-API_KEY = os.getenv("API_KEY")
 
 # Configure the Google Generative AI with API key
-genai.configure(api_key=os.environ["API_KEY"])
+genai.configure(api_key=os.getenv("API_KEY"))
 
 # Initialize the model
 model = genai.GenerativeModel('gemini-1.5-flash')
@@ -70,29 +68,3 @@ if __name__ == "__main__":
     else:
         create_dockerfile(service_name)
         build_and_run_container(port)
-
-
-# @app.route('/', methods=['GET', 'POST'])
-# def index():
-#     if request.method == 'POST':
-#         service_name = request.form['service_name'].strip().lower()
-#         port = request.form['port'].strip()
-        
-#         if not service_name or not port:
-#             flash("Service name and port are required.")
-#             return redirect(url_for('index'))
-        
-#         create_dockerfile(service_name)
-#         container_id = build_and_run_container(port)
-        
-#         if "error" in container_id.lower():
-#             flash(f"An error occurred: {container_id}")
-#         else:
-#             flash(f"Container started with ID: {container_id}")
-        
-#         return redirect(url_for('index'))
-    
-#     return render_template('index.html')
-
-# if __name__ == "__main__":
-#     app.run(debug=True)
